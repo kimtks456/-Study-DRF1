@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+
 from quickstart import views
 from rest_framework import routers
 
@@ -23,7 +24,9 @@ router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
-    path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    # path('admin/', admin.site.urls), # 서버주소/admin 이라는 url 요청을 관리자 page로 연결.
+    # path('', include(router.urls)), # router class 내의 urls.py의 url로 연결.
+    # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('admin/', admin.site.urls),
+    path('', include('gistHelper.urls')),
 ]
